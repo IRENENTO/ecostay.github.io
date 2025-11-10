@@ -1,0 +1,1 @@
+<template><div class="page"><h1>Tourism in Rwanda</h1><p>Explore gorilla trekking, volcanoes, and lakes!</p></div></template>

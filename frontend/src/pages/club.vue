@@ -1,0 +1,1 @@
+<template><div class="page"><h1>Ecosta Club</h1><p>Join our premium members for exclusive deals!</p></div></template>

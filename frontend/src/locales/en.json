@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "home": "Home",
+    "tourism": "Tourism",
+    "hospitality": "Hospitality",
+    "club": "Club",
+    "login": "Login"
+  },
+  "home": {
+    "hero": "Find Your Perfect Eco-Stay",
+    "sub": "Sustainable homes in Rwanda's paradise",
+    "explore": "DISCOVER RWANDA NOW",
+    "search": "Search gorilla tours, volcanoes, eco-lodges...",
+    "featured": "Featured stays",
+    "how_title": "How EcostaStay works",
+    "steps": {
+      "find": { "title": "Find", "desc": "Search curated eco-friendly stays and experiences." },
+      "book": { "title": "Book", "desc": "Reserve directly with hosts who practice sustainability." },
+      "impact": { "title": "Impact", "desc": "Support community projects and conservation on every trip." }
+    }
+  },
+  "footer": {
+    "tagline": "Sustainable luxury stays in the heart of a thousand hills.",
+    "quick": "Quick Links",
+    "destinations": "Top Destinations",
+    "contact": "Contact Us",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookies"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "name": "Full name",
+    "login_btn": "Login",
+    "register_btn": "Create account",
+    "google": "Continue with Google",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?",
+    "success_login": "Logged in successfully",
+    "success_register": "Account created successfully",
+    "wrong_pass": "Wrong password",
+    "error": "An error occurred",
+    "google_error": "Google login failed"
+  }
+}

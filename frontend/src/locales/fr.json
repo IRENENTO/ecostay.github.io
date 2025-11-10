@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "tourism": "Tourisme",
+    "hospitality": "Hospitalité",
+    "club": "Club",
+    "login": "Connexion"
+  },
+  "home": {
+    "hero": "Trouvez votre séjour éco-parfait",
+    "sub": "Maisons durables pour voyageurs responsables au Rwanda",
+    "explore": "Découvrez le Rwanda maintenant",
+    "search": "Rechercher gorilles, lodges éco, volcans...",
+    "featured": "Séjours en vedette",
+    "how_title": "Comment EcostaStay fonctionne",
+    "steps": {
+      "find": { "title": "Trouver", "desc": "Recherchez des séjours et expériences éco-responsables sélectionnés." },
+      "book": { "title": "Réserver", "desc": "Réservez directement auprès d'hôtes qui pratiquent la durabilité." },
+      "impact": { "title": "Impact", "desc": "Soutenez des projets communautaires et la conservation lors de chaque voyage." }
+    }
+  }
+  ,"auth":{
+    "login":"Connexion",
+    "register":"Créer un compte",
+    "email":"E-mail",
+    "password":"Mot de passe",
+    "name":"Nom complet",
+    "login_btn":"Se connecter",
+    "register_btn":"Créer un compte",
+    "google":"Continuer avec Google",
+    "no_account":"Vous n'avez pas de compte ?",
+    "have_account":"Vous avez déjà un compte ?",
+    "success_login":"Connecté avec succès",
+    "success_register":"Compte créé avec succès",
+    "wrong_pass":"Mot de passe incorrect",
+    "error":"Une erreur est survenue",
+    "google_error":"Échec de la connexion Google"
+  }
+}

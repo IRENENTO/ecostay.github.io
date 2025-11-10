@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "home": "Ahabanza",
+    "tourism": "Ingendo",
+    "hospitality": "Kwakira Abagenzi",
+    "club": "Itsinda ryacu",
+    "login": "Injira"
+  },
+  "home": {
+    "hero": "Shakisha Aho Ubuganira Bwiza",
+    "sub": "Amazu meza mu Rwanda nziza y'ubwiza",
+    "explore": "Sura Rwanda Nonaha",
+    "search": "Shakisha gorilla, amacumbi, pariki...",
+    "featured": "Amahoteri yatoranijwe",
+    "how_title": "Uko EcostaStay ikora",
+    "steps": {
+      "find": { "title": "Shakisha", "desc": "Shakisha amahoteri n'ibikorwa byita ku bidukikije." },
+      "book": { "title": "Tegura", "desc": "Tegura ubukerarugendo bwanyu n'abakiriya bubahiriza ibidukikije." },
+      "impact": { "title": "Ingaruka", "desc": "Shyigikira imishinga y'iterambere n'ubusugire ku rugendo rwose." }
+    }
+  }
+  ,"auth":{
+    "login":"Injira",
+    "register":"Iyandikishe",
+    "email":"Imeli",
+    "password":"Ijambobanga",
+    "name":"Izina",
+    "login_btn":"Injira",
+    "register_btn":"Iyandikishe",
+    "google":"Komeza ukoreshe Google",
+    "no_account":"Nta konti ushobora kugira?",
+    "have_account":"Uramutse ufite konti?",
+    "success_login":"Winjiye neza",
+    "success_register":"Konti yakozwe neza",
+    "wrong_pass":"Ijambobanga si ryo",
+    "error":"Habaye ikosa",
+    "google_error":"Google yanze kwemeza"
+  }
+}

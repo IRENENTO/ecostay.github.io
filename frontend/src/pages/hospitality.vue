@@ -1,0 +1,1 @@
+<template><div class="page"><h1>Hospitality Services</h1><p>Luxury eco-lodges and sustainable hotels.</p></div></template>
