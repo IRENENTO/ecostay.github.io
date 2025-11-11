@@ -35,5 +35,37 @@
     "wrong_pass":"Mot de passe incorrect",
     "error":"Une erreur est survenue",
     "google_error":"Échec de la connexion Google"
+  },
+  "tourism": {
+    "hero_title": "Explorez les merveilles naturelles du Rwanda",
+    "hero_subtitle": "Aventures durables pour voyageurs conscients",
+    "cta": "Planifiez votre voyage",
+    "featured": "Destinations vedettes",
+    "learn_more": "En savoir plus",
+    "experiences": "Expériences sélectionnées",
+    "impact": "Votre impact compte",
+    "impact_conservation": "Les recettes soutiennent la conservation",
+    "impact_community": "Emplois locaux créés",
+    "impact_protected": "Hectares protégés"
+  },
+  "hospitality": {
+    "hero_title": "Hébergements durables",
+    "hero_subtitle": "Lodges et hôtels éco-responsables pour voyageurs conscients",
+    "search": "Chercher des lodges...",
+    "search_btn": "Rechercher",
+    "lodge_types": "Types d'hébergements",
+    "featured": "Lodges éco vedettes",
+    "book": "Réserver maintenant",
+    "standards": "Nos normes de durabilité",
+    "water_conservation": "Conservation de l'eau",
+    "water_desc": "Récupération d'eau de pluie et systèmes efficaces.",
+    "renewable_energy": "Énergie renouvelable",
+    "renewable_desc": "Énergie solaire et solutions énergétiques propres.",
+    "waste_management": "Gestion des déchets",
+    "waste_desc": "Objectifs zéro déchet et programmes de compostage.",
+    "community": "Engagement communautaire",
+    "community_desc": "Salaires équitables et emploi local.",
+    "pricing": "Niveaux de tarification",
+    "explore": "Explorer"
   }
 }

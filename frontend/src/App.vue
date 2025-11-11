@@ -1,39 +1,54 @@
 <template>
   <div id="app">
-    <NavBar />
+    <!-- render ClubNav for /club routes, otherwise the global NavBar -->
+    <component :is="isClub ? ClubNav : NavBar" />
     <router-view />
     <Footer />
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import NavBar from './components/NavBar.vue'
+import ClubNav from './components/ClubNav.vue'
 import Footer from './components/Footer.vue'
+
+const route = useRoute()
+const isClub = computed(() => route.path && route.path.startsWith('/club'))
 </script>
 
 <style>
-/* THIS IS THE MOST IMPORTANT FIX IN RWANDA TODAY */
+/* Reset all margins/paddings */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body, #app {
-  height: 100%;
   width: 100%;
-  overflow-x: hidden !important;
-  background: #000 !important;
+  overflow-x: hidden;
+  background: #000;
   color: white;
 }
 
-/* FORCE ROUTER-VIEW TO BE VISIBLE */
-#app > div {
-  display: block !important;
-  min-height: 100vh !important;
-  padding-top: 120px !important; /* CLEAR NAVBAR */
-  position: relative !important;
-  z-index: 1 !important;
+/* Ensure router-view displays full content */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* KILL ANY HIDDEN OVERFLOW */
-div, section, main, .home-page {
-  overflow: visible !important;
+/* NavBar is fixed, so add offset to content */
+#app > :nth-child(2) {
+  margin-top: 0; /* content starts right after navbar since navbar is fixed */
+  flex: 1;
+}
+
+/* Footer stays at bottom */
+#app > :last-child {
+  margin-top: auto;
+}
+
+/* All divs, sections visible by default */
+div, section, main {
+  overflow: visible;
 }
 </style>

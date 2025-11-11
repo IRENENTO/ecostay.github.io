@@ -45,8 +45,9 @@ const error = ref('')
 const handleRegister = async () => {
   try {
     await createUserWithEmailAndPassword(auth, email.value, password.value)
-    message.value = t('auth.success_register') || 'Account created! Please login.'
-    setTimeout(() => router.push('/login'), 1200)
+    message.value = t('auth.success_register') || 'Account created! Redirecting to Club...'
+    // Firebase auto-signs-in the new user; redirect them to Club
+    setTimeout(() => router.replace('/club'), 900)
   } catch (err) {
     error.value = err.message || (t('auth.error') || 'Registration failed')
   }
@@ -55,7 +56,8 @@ const handleRegister = async () => {
 const googleRegister = async () => {
   try {
     await signInWithPopup(auth, googleProvider)
-    router.push('/')
+    // redirect to Club after successful google auth
+    router.replace('/club')
   } catch (err) {
     error.value = t('auth.google_error') || 'Google sign-in failed'
   }

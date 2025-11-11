@@ -31,12 +31,13 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { auth, googleProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '../firebase.js'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 const router = useRouter()
+const route = useRoute()
 
 const isLogin = ref(true)
 const email = ref('')
@@ -50,11 +51,12 @@ const handleAuth = async () => {
     if (isLogin.value) {
       await signInWithEmailAndPassword(auth, email.value, password.value)
       message.value = t('auth.success_login')
-      setTimeout(() => router.push('/'), 1500)
+      setTimeout(() => router.push('/club'), 1500)
     } else {
       await createUserWithEmailAndPassword(auth, email.value, password.value)
       message.value = t('auth.success_register')
-      isLogin.value = true
+      // user is automatically signed in after registration; redirect to club
+      setTimeout(() => router.push('/club'), 1500)
     }
   } catch (err) {
     error.value = err.message.includes('wrong-password') ? t('auth.wrong_pass') : t('auth.error')
@@ -63,8 +65,8 @@ const handleAuth = async () => {
 
 const googleLogin = async () => {
   try {
-    await signInWithPopup(auth, googleProvider)
-    router.push('/')
+  await signInWithPopup(auth, googleProvider)
+  router.push('/club')
   } catch (err) {
     error.value = t('auth.google_error')
   }
