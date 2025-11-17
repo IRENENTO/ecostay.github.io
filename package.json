@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IRENENTO/ecostay.git"
+    "url": "git+https://github.com/IRENENTO/ecostay.github.io.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/IRENENTO/ecostay/issues"
+    "url": "https://github.com/IRENENTO/ecostay.github.io/issues"
   },
-  "homepage": "https://github.com/IRENENTO/ecostay#readme"
+  "homepage": "https://irenento.github.io/"
 }
