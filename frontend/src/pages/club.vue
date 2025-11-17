@@ -4,9 +4,24 @@
     <Hero />
 
     <section id="story" class="section">
-      <div class="container">
-        <h2>Our Story</h2>
-        <p>EcostaStay Club was born from a vision to connect eco-conscious travelers and hosts in Rwanda. Since 2025, we've built a family of 500+ members who believe in sustainable luxury.</p>
+      <div class="container story-grid">
+        <div class="story-copy">
+          <h2>Our Story</h2>
+          <p>EcostaStay Club began as a handful of eco-hosts sharing best practices after gorilla treks. Today we’re a nationwide circle of travelers, storytellers, and conservation partners who turn every journey into measurable impact.</p>
+          <ul class="story-list">
+            <li><strong>500+</strong> climate-positive stays verified since 2025.</li>
+            <li><strong>12</strong> partner lodges funded for solar, water and waste upgrades.</li>
+            <li><strong>18%</strong> of every booking reinvested into community projects.</li>
+          </ul>
+        </div>
+        <div class="story-media glass">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900" alt="EcostaStay community" />
+          <div class="story-metric">
+            <span class="metric-number">92%</span>
+            <p>of members host or volunteer at least twice a year.</p>
+          </div>
+          <p class="story-caption">Members leading a reforestation weekend near Nyungwe canopy walk.</p>
+        </div>
       </div>
     </section>
 
@@ -19,6 +34,35 @@
         <div class="card glass animate">
           <h3>MISSION</h3>
           <p>Connect, educate, and empower a community of eco-leaders through shared experiences, knowledge, and action.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="resilience" class="section bg-dark">
+      <div class="container resilience-grid">
+        <div class="resilience-copy">
+          <p class="eyebrow">CLIMATE RESILIENCE</p>
+          <h2>We reinvest into nature-based adaptation</h2>
+          <p>EcostaStay Club members co-fund bamboo corridors, floating wetlands, and insurance pools that protect communities from droughts or flash floods.</p>
+          <ul>
+            <li><strong>18%</strong> of booking revenue flows into resilience labs.</li>
+            <li><strong>12</strong> watersheds now have early warning sensors maintained by members.</li>
+            <li><strong>4</strong> innovation pods test solar cold-chain and blue schools.</li>
+          </ul>
+        </div>
+        <div class="resilience-cards">
+          <article class="glass">
+            <h4>Regenerative Lodging Index</h4>
+            <p>Scorecards track emissions, biodiversity, and community benefits for every stay.</p>
+          </article>
+          <article class="glass">
+            <h4>Community Adaptation Pods</h4>
+            <p>Mobile toolkits with tree seedlings, water sensors, and storytelling gear rotate across districts.</p>
+          </article>
+          <article class="glass">
+            <h4>Rapid Response Fund</h4>
+            <p>Members pledge volunteer hours or micro-grants within 24h of landslides or storms.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -64,21 +108,23 @@ const { user } = authStore
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 .club-website {
-  background: #000;
-  color: white;
+  background: var(--bg-main);
+  color: var(--text-main);
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 /* NAVBAR */
 .club-nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  background: rgba(0, 0, 0, 0.95);
+  background: var(--navbar-bg);
   backdrop-filter: blur(20px);
   z-index: 9999;
   padding: 1rem 5%;
   border-bottom: 2px solid #00ff9d;
+  transition: background 0.4s ease;
 }
 
 .nav-container {
@@ -101,7 +147,7 @@ const { user } = authStore
 }
 
 .nav-links a {
-  color: white;
+  color: var(--text-main);
   text-decoration: none;
   font-weight: 600;
   transition: 0.3s;
@@ -266,13 +312,110 @@ const { user } = authStore
 .section {
   padding: 6rem 5%;
   text-align: center;
+  scroll-margin-top: 120px;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
-.bg-dark { background: #001a0f; }
+.bg-dark { background: var(--panel-bg); }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.story-copy {
+  text-align: left;
+}
+
+.story-copy p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.story-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.story-list li {
+  background: rgba(0, 255, 157, 0.08);
+  padding: 0.9rem 1.2rem;
+  border-radius: 14px;
+  border-left: 4px solid #00ff9d;
+}
+
+.story-media {
+  padding: 1.5rem;
+}
+
+.story-media img {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.story-metric {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.metric-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #00ff9d;
+}
+
+.story-caption {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+.resilience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+  text-align: left;
+}
+
+.resilience-copy ul {
+  list-style: none;
+  margin-top: 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.resilience-copy li {
+  background: rgba(0, 255, 157, 0.08);
+  border-left: 4px solid #00ff9d;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+}
+
+.resilience-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.resilience-cards article {
+  padding: 1.2rem 1.5rem;
+  border-radius: 18px;
+  text-align: left;
 }
 
 h2 {
@@ -293,7 +436,7 @@ h2 {
   padding: 2rem;
   border-radius: 20px;
   text-align: center;
-  border: 2px solid rgba(0,255,157,0.3);
+  border: 2px solid var(--card-border);
 }
 
 .animate {
@@ -394,10 +537,11 @@ h2 {
 
 /* FOOTER */
 .club-footer {
-  background: #000;
+  background: var(--bg-main);
   padding: 3rem 5%;
   border-top: 2px solid #00ff9d;
   text-align: center;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 .updates {

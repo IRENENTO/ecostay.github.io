@@ -11,11 +11,22 @@
         <router-link to="/" class="nav-link">Home</router-link>
         <router-link to="/tourism" class="nav-link">Tourism</router-link>
         <router-link to="/hospitality" class="nav-link">Hospitality</router-link>
-        <router-link to="/club" class="nav-link">Club</router-link>
+
+        <!-- Glowing CLUB button -->
+        <router-link to="/club" class="nav-link club-highlight">
+          CLUB
+        </router-link>
       </div>
 
       <!-- RIGHT SIDE -->
       <div class="nav-right">
+        <button
+          class="theme-toggle"
+          @click="toggleTheme"
+          :aria-label="`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`"
+        >
+          <i :class="theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'"></i>
+        </button>
         <div class="lang-switch">
           <button @click="setLang('en')" :class="{ active: locale === 'en' }">EN</button>
           <button @click="setLang('kin')" :class="{ active: locale === 'kin' }">RW</button>
@@ -24,11 +35,12 @@
         </div>
 
         <router-link v-if="!user" to="/login" class="login-btn">LOGIN</router-link>
+
         <div v-else class="profile" @click="dropdown = !dropdown">
-          <img :src="user.photoURL" class="profile-img" />
+          <img :src="user.photoURL || 'https://i.pravatar.cc/150'" class="profile-img" />
           <div v-if="dropdown" class="dropdown">
             <p>{{ user.displayName }}</p>
-            <p>Language: {{ locale.toUpperCase() }}</p>
+            <router-link to="/dashboard">Member Dashboard</router-link>
             <router-link to="/profile">Edit Profile</router-link>
             <button @click="logout">Logout</button>
           </div>
@@ -46,62 +58,96 @@
       <router-link to="/" @click="mobileMenu = false">Home</router-link>
       <router-link to="/tourism" @click="mobileMenu = false">Tourism</router-link>
       <router-link to="/hospitality" @click="mobileMenu = false">Hospitality</router-link>
-      <router-link to="/club" @click="mobileMenu = false">Club</router-link>
-      <router-link to="/login" @click="mobileMenu = false" class="login-btn">LOGIN</router-link>
+
+      <router-link
+        to="/club"
+        @click="mobileMenu = false"
+        class="club-highlight mobile-club"
+      >
+        CLUB
+      </router-link>
+      <router-link
+        v-if="!user"
+        to="/login"
+        @click="mobileMenu = false"
+        class="login-btn"
+      >
+        LOGIN
+      </router-link>
+      <router-link
+        v-else
+        to="/dashboard"
+        @click="mobileMenu = false"
+        class="login-btn"
+      >
+        Dashboard
+      </router-link>
+      <button
+        class="theme-toggle mobile-toggle-btn"
+        @click="toggleTheme"
+        :aria-label="`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`"
+      >
+        <i :class="theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'"></i>
+      </button>
     </div>
   </nav>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch, onUnmounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import i18n from '../i18n'
 import { useAuthStore } from '../stores/auth'
+import { useThemeStore } from '../stores/theme'
+import { storeToRefs } from 'pinia'
 
-// use the global i18n scope so changes affect the whole app
 const { locale } = useI18n({ useScope: 'global' })
 const authStore = useAuthStore()
 const { user, logout } = authStore
 
 const mobileMenu = ref(false)
 const dropdown = ref(false)
+const route = useRoute()
+
+const themeStore = useThemeStore()
+const { theme } = storeToRefs(themeStore)
+const { toggleTheme } = themeStore
 
 const setLang = (lang) => {
-  // persist preference
   localStorage.setItem('lang', lang)
 
-  // try updating the composable locale first
-  if (locale && typeof locale === 'object') {
-    locale.value = lang
-  }
+  if (locale && typeof locale === 'object') locale.value = lang
+  if (i18n?.global?.locale) i18n.global.locale.value = lang
 
-  // also update the global i18n instance to be safe
-  if (i18n && i18n.global && i18n.global.locale) {
-    i18n.global.locale.value = lang
-  }
-
-  // set document language and direction for RTL languages
-  try {
-    document.documentElement.lang = lang
-    if (lang === 'ar') document.documentElement.dir = 'rtl'
-    else document.documentElement.dir = 'ltr'
-  } catch (e) {
-    /* ignore in non-browser env */
-  }
+  document.documentElement.lang = lang
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
 }
+
+watch(() => route.fullPath, () => {
+  mobileMenu.value = false
+  dropdown.value = false
+})
+
+const lockScroll = (state) => {
+  if (typeof document === 'undefined') return
+  document.body.style.overflow = state ? 'hidden' : ''
+}
+
+watch(mobileMenu, (val) => lockScroll(val))
+onUnmounted(() => lockScroll(false))
 </script>
 
 <style scoped>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
 .navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: var(--navbar-bg);
   backdrop-filter: blur(20px);
   z-index: 9999;
   padding: 1rem 5%;
   border-bottom: 3px solid #00ff9d;
+  transition: background 0.4s ease;
 }
 
 .nav-container {
@@ -110,6 +156,7 @@ const setLang = (lang) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.5rem;
 }
 
 .logo-img {
@@ -119,31 +166,87 @@ const setLang = (lang) => {
 
 .nav-menu {
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 1rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,255,157,0.4);
+  background: transparent;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.theme-toggle:hover {
+  background: rgba(0,255,157,0.12);
+  color: #00ff9d;
+}
+
+.mobile-toggle-btn {
+  width: 54px;
+  height: 54px;
+  margin: 1rem auto 0;
+  font-size: 1.2rem;
 }
 
 .nav-link {
-  color: white;
+  color: var(--text-main);
   text-decoration: none;
   font-weight: 700;
   font-size: 1.1rem;
   text-transform: uppercase;
   padding: 0.5rem 1rem;
   border-radius: 25px;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
-.nav-link:hover, .nav-link.router-link-active {
-  background: #00ff9d;
-  color: black;
+.nav-link:hover,
+.nav-link.router-link-active:not(.club-highlight) {
+  background: rgba(0, 255, 157, 0.2);
+  color: #00ff9d;
 }
 
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+/* Glowing CLUB button */
+.club-highlight {
+  background: linear-gradient(45deg, #00ff9d, #00cc7a) !important;
+  color: black !important;
+  padding: 0.6rem 1.6rem !important;
+  border-radius: 50px !important;
+  font-weight: 900 !important;
+  font-size: 1.05rem !important;
+  box-shadow: 0 0 30px rgba(0, 255, 157, 0.7) !important;
+  transition: all 0.3s ease !important;
 }
 
+.club-highlight:hover,
+.router-link-active.club-highlight {
+  transform: scale(1.08) !important;
+  box-shadow: 0 0 50px rgba(0, 255, 157, 0.95) !important;
+}
+
+.mobile-club {
+  display: inline-block;
+  margin: 1rem auto;
+  padding: 1rem 3rem !important;
+  font-size: 1.3rem !important;
+}
+
+/* Language Switch */
 .lang-switch {
   display: flex;
   background: rgba(0, 255, 157, 0.2);
@@ -166,21 +269,18 @@ const setLang = (lang) => {
   color: black;
 }
 
+/* Login Button */
 .login-btn {
   background: linear-gradient(45deg, #00ff9d, #00cc7a);
   color: black;
   padding: 0.8rem 2.5rem;
   border-radius: 50px;
-  text-decoration: none;
   font-weight: 800;
-  box-shadow: 0 0 30px rgba(0, 255, 157, 0.7);
+  text-decoration: none;
+  box-shadow: 0 0 30px rgba(0,255,157,0.7);
 }
 
-.profile {
-  position: relative;
-  cursor: pointer;
-}
-
+/* Profile */
 .profile-img {
   width: 50px; height: 50px;
   border-radius: 50%;
@@ -198,6 +298,7 @@ const setLang = (lang) => {
   text-align: center;
 }
 
+/* Mobile Menu Button */
 .mobile-toggle {
   display: none;
   flex-direction: column;
@@ -212,12 +313,16 @@ const setLang = (lang) => {
   border-radius: 3px;
 }
 
+/* Mobile Menu */
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 80px; left: 0; right: 0;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(500px, 90%);
   background: rgba(0,0,0,0.98);
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   text-align: center;
 }
 
@@ -229,11 +334,11 @@ const setLang = (lang) => {
   display: block;
   padding: 1rem;
   color: white;
-  text-decoration: none;
   font-size: 1.2rem;
+  text-decoration: none;
 }
 
-/* MOBILE */
+/* Responsive */
 @media (max-width: 992px) {
   .nav-menu, .nav-right { display: none; }
   .mobile-toggle { display: flex; }

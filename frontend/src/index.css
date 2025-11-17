@@ -2,6 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;700;900&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 
+:root {
+  color-scheme: dark;
+  --bg-main: #050505;
+  --text-main: #f2f8f5;
+  --panel-bg: rgba(0, 19, 12, 0.85);
+  --navbar-bg: rgba(0, 0, 0, 0.92);
+  --card-border: rgba(0, 255, 157, 0.3);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --bg-main: #f6faf5;
+  --text-main: #121212;
+  --panel-bg: rgba(255, 255, 255, 0.9);
+  --navbar-bg: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(0, 120, 78, 0.25);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,10 +28,29 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: #0f0f0f;
-  color: #eee;
+  background: var(--bg-main);
+  color: var(--text-main);
   line-height: 1.7;
   overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+body,
+main,
+section,
+.club-website,
+.home-hero,
+.tourism-page,
+.dashboard {
+  background: var(--bg-main);
+  color: var(--text-main);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.bg-dark,
+.impact,
+.mission-vision {
+  background: var(--panel-bg);
 }
 
 [dir="rtl"] body { font-family: 'Cairo', sans-serif; }
@@ -33,11 +70,34 @@ body {
 
 /* Glassmorphism */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--panel-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 255, 157, 0.3);
+  border: 1px solid var(--card-border);
   border-radius: 20px;
+}
+
+.section {
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+[data-theme='light'] .club-footer,
+[data-theme='light'] .club-nav,
+[data-theme='light'] .impact,
+[data-theme='light'] .bg-dark {
+  background: rgba(255,255,255,0.94);
+  color: #0f1d14;
+}
+
+[data-theme='light'] .club-link,
+[data-theme='light'] .nav-link {
+  color: #04130b;
+}
+
+[data-theme='light'] .nav-link:hover,
+[data-theme='light'] .club-link:hover {
+  background: rgba(0,130,90,0.12);
+  color: #0a5b3a;
 }
 
 /* Gradient Text */
@@ -82,11 +142,7 @@ body {
 /* ADD THIS AT THE END OF src/index.css */
 html, body {
   overflow-x: hidden !important;
-  width: 100vw !important;
-}
-
-* {
-  box-sizing: border-box;
+  width: 100%;
 }
 
 /* FIX MOBILE VIEWPORT */
@@ -97,4 +153,3 @@ html, body {
   animation: float 6s ease-in-out infinite;
 }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
-html, body { overflow-x: hidden !important; }

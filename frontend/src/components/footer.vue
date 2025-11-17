@@ -92,11 +92,12 @@ const isArabic = computed(() => locale.value === 'ar')
 
 <style scoped>
 .ecostay-footer {
-  background: linear-gradient(135deg, #001a0f 0%, #000 100%);
-  color: #ddd;
+  background: var(--bg-main);
+  color: var(--text-main);
   margin-top: 8rem;
   position: relative;
   overflow: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 .ecostay-footer::before {
@@ -158,7 +159,7 @@ const isArabic = computed(() => locale.value === 'ar')
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin: 0.9rem 0; }
 .footer-col a {
-  color: #ccc;
+  color: var(--text-main);
   text-decoration: none;
   transition: 0.4s;
   font-weight: 500;

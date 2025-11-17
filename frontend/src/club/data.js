@@ -22,12 +22,31 @@ export const events = [
     location: 'Gisenyi',
     desc: 'Sustainable water activities and environmental awareness session.',
     img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop'
+  },
+  {
+    id: 'artisan-market',
+    title: '🧺 Artisan Marketplace Residency',
+    date: 'Dec 03',
+    location: 'Huye',
+    desc: 'Co-design souvenirs with women cooperatives and launch limited drops.',
+    img: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&h=600&fit=crop'
+  },
+  {
+    id: 'night-safari',
+    title: '🌙 Akagera Night Safari',
+    date: 'Dec 09',
+    location: 'Akagera',
+    desc: 'Track nocturnal wildlife with rangers while piloting electric jeeps.',
+    img: 'https://images.unsplash.com/photo-1470246973918-29a93221c455?w=800&h=600&fit=crop'
   }
 ]
 
 export const team = [
-  { id: 'alice', name: 'Alice Umutesi', role: 'Founder & Eco Guide', img: 'https://i.pravatar.cc/150?img=3' },
-  { id: 'jean', name: 'Jean Paul', role: 'Community Manager', img: 'https://i.pravatar.cc/150?img=4' }
+  { id: 'alice', name: 'Alice Umutesi', role: 'Founder & Eco Guide', location: 'Kigali', focus: 'Gorilla treks & member curation', img: 'https://i.pravatar.cc/150?img=3' },
+  { id: 'jean', name: 'Jean Paul', role: 'Community Manager', location: 'Musanze', focus: 'Ranger training & events', img: 'https://i.pravatar.cc/150?img=4' },
+  { id: 'diane', name: 'Diane Mukwiye', role: 'Impact Lead', location: 'Huye', focus: 'Carbon reporting & partnerships', img: 'https://i.pravatar.cc/150?img=7' },
+  { id: 'eric', name: 'Eric Gatera', role: 'Digital Storyteller', location: 'Gisenyi', focus: 'Media labs & workshops', img: 'https://i.pravatar.cc/150?img=12' },
+  { id: 'nadia', name: 'Nadia Byusa', role: 'Hospitality Coach', location: 'Bugesera', focus: 'Host mentoring & audits', img: 'https://i.pravatar.cc/150?img=32' }
 ]
 
 export const news = [

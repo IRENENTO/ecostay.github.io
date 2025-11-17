@@ -1,7 +1,10 @@
 <template>
-  <section id="sessions" class="section">
+  <section id="events" class="section">
     <div class="container">
-      <h2>Upcoming Sessions & Events</h2>
+      <div class="section-header">
+        <h2>Upcoming Sessions & Events</h2>
+        <p>Retreats, workshops, and conservation field trips curated for EcostaStay members.</p>
+      </div>
       <div class="sessions-grid">
         <div v-for="e in events" :key="e.id" class="event-card glass">
           <img :src="e.img" :alt="e.title" class="event-image" />
@@ -24,6 +27,7 @@ import { events } from './data.js'
 <style scoped>
 .section { padding: 4rem 5% }
 .container { max-width:1100px; margin:0 auto }
+.section-header{ max-width:640px; margin:0 auto 2rem; text-align:center; opacity:0.85 }
 .sessions-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:1.2rem }
 .event-card{ overflow:hidden; border-radius:12px }
 .event-image{ width:100%; height:220px; object-fit:cover }
