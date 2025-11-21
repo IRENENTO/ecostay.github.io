@@ -9,21 +9,8 @@
         <input v-model="password" type="password" :placeholder="$t('auth.password')" required />
         <input v-if="!isLogin" v-model="name" type="text" :placeholder="$t('auth.name')" required />
 
-        <div class="form-row">
-          <label class="remember">
-            <input type="checkbox" v-model="remember" />
-            <span>{{ $t('auth.remember') || 'Remember me' }}</span>
-          </label>
-          <button type="button" class="link-btn" @click="forgotPassword">
-            {{ $t('auth.forgot') || 'Forgot password?' }}
-          </button>
-        </div>
-
-        <button type="submit" class="glow-btn full" :disabled="loading">
-          <span v-if="!loading">
-            {{ isLogin ? $t('auth.login_btn') : $t('auth.register_btn') }}
-          </span>
-          <span v-else class="loader">{{ $t('auth.loading') || 'Please wait...' }}</span>
+        <button type="submit" class="glow-btn full">
+          {{ isLogin ? $t('auth.login_btn') : $t('auth.register_btn') }}
         </button>
       </form>
 
@@ -37,7 +24,6 @@
       </p>
 
       <p v-if="message" class="message success">{{ message }}</p>
-      <p v-if="resetMessage" class="message success">{{ resetMessage }}</p>
       <p v-if="error" class="message error">{{ error }}</p>
     </div>
   </div>
@@ -46,7 +32,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { auth, googleProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from '../firebase.js'
+import { auth, googleProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '../firebase.js'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -59,29 +45,21 @@ const password = ref('')
 const name = ref('')
 const message = ref('')
 const error = ref('')
-const loading = ref(false)
-const remember = ref(false)
-const resetMessage = ref('')
 
 const handleAuth = async () => {
   try {
-    loading.value = true
-    message.value = ''
-    error.value = ''
-    resetMessage.value = ''
     if (isLogin.value) {
       await signInWithEmailAndPassword(auth, email.value, password.value)
       message.value = t('auth.success_login')
-      setTimeout(() => router.push(remember.value ? '/dashboard' : '/club'), 1200)
+      setTimeout(() => router.push('/club'), 1500)
     } else {
       await createUserWithEmailAndPassword(auth, email.value, password.value)
       message.value = t('auth.success_register')
-      setTimeout(() => router.push('/club'), 1200)
+      // user is automatically signed in after registration; redirect to club
+      setTimeout(() => router.push('/club'), 1500)
     }
   } catch (err) {
     error.value = err.message.includes('wrong-password') ? t('auth.wrong_pass') : t('auth.error')
-  } finally {
-    loading.value = false
   }
 }
 
@@ -91,20 +69,6 @@ const googleLogin = async () => {
   router.push('/club')
   } catch (err) {
     error.value = t('auth.google_error')
-  }
-}
-
-const forgotPassword = async () => {
-  if (!email.value) {
-    error.value = t('auth.enter_email') || 'Please enter your email first.'
-    return
-  }
-  try {
-    error.value = ''
-    await sendPasswordResetEmail(auth, email.value)
-    resetMessage.value = t('auth.reset_sent') || 'Reset link sent to your inbox.'
-  } catch (err) {
-    error.value = err.message || (t('auth.error') || 'Something went wrong')
   }
 }
 </script>
@@ -159,44 +123,7 @@ input {
 
 input::placeholder { color: rgba(255,255,255,0.7); }
 
-.form-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:0.9rem;
-  color:rgba(255,255,255,0.7);
-}
-
-.remember{
-  display:flex;
-  align-items:center;
-  gap:0.4rem;
-}
-
-.remember input{
-  width:auto;
-  margin:0;
-}
-
-.link-btn{
-  background:none;
-  border:none;
-  color:#00ff9d;
-  cursor:pointer;
-  font-weight:600;
-}
-
 .glow-btn.full { width: 100%; margin: 1.5rem 0; }
-.glow-btn:disabled{
-  opacity:0.7;
-  cursor:not-allowed;
-}
-
-.loader{
-  display:inline-flex;
-  align-items:center;
-  gap:0.5rem;
-}
 
 .google-btn {
   width: 100%;

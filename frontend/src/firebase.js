@@ -10,8 +10,7 @@ import {
   signOut,
   updateProfile,
   updateEmail,
-  updatePassword,
-  sendPasswordResetEmail
+  updatePassword
 } from 'firebase/auth'
 
 // Prefer reading sensitive values from environment variables (Vite uses import.meta.env)
@@ -42,6 +41,5 @@ export {
   signOut,
   updateProfile,
   updateEmail,
-  updatePassword,
-  sendPasswordResetEmail
+  updatePassword
 }

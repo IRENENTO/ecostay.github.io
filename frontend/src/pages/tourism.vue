@@ -141,10 +141,9 @@ const experiences = [
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 .tourism-page {
-  background: var(--bg-main);
-  color: var(--text-main);
+  background: #000;
+  color: white;
   font-family: 'Poppins', sans-serif;
-  transition: background 0.4s ease, color 0.4s ease;
 }
 
 /* HERO */
@@ -219,8 +218,8 @@ const experiences = [
 }
 
 .dest-card {
-  background: var(--panel-bg);
-  border: 2px solid var(--card-border);
+  background: rgba(0, 255, 157, 0.05);
+  border: 2px solid rgba(0, 255, 157, 0.2);
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -307,8 +306,8 @@ const experiences = [
 }
 
 .exp-card {
-  background: var(--panel-bg);
-  border: 2px solid var(--card-border);
+  background: rgba(0, 255, 157, 0.08);
+  border: 2px solid rgba(0, 255, 157, 0.2);
   padding: 2rem;
   border-radius: 16px;
   text-align: center;
@@ -366,10 +365,10 @@ const experiences = [
 }
 
 .impact-card {
-  background: var(--panel-bg);
+  background: rgba(0, 255, 157, 0.08);
   padding: 2rem;
   border-radius: 12px;
-  border: 1px solid var(--card-border);
+  border: 1px solid rgba(0, 255, 157, 0.2);
 }
 
 .metric {
