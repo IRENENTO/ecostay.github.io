@@ -198,7 +198,8 @@ const saveChanges = () => {
   padding: 1.5rem;
   border-top: 1px solid #eee;
   justify-content: flex-end;
-  sticky bottom: 0;
+  position: sticky;
+  bottom: 0;
   background: white;
 }
 
