@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <NavBar />
+    <ClubNav v-if="$route.path === '/club'" />
+    <NavBar v-else />
     <router-view />
     <Footer />
   </div>
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router'
 import NavBar from './components/NavBar.vue'
-import Footer from './components/Footer.vue'
+import ClubNav from './components/ClubNav.vue'
+import Footer from './components/footer.vue'
+
+useRoute()
 </script>
 
 <style>
