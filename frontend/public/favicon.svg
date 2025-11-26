@@ -1,0 +1,48 @@
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- House outline -->
+  <path d="M 128 80 L 95 110 L 95 140 L 161 140 L 161 110 Z" fill="none" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Left leaf -->
+  <ellipse cx="105" cy="115" rx="20" ry="35" fill="#7ec850" transform="rotate(-35 105 115)"/>
+  <path d="M 95 100 Q 105 105 115 125" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="100" cy="110" r="4" fill="white"/>
+  <circle cx="110" cy="120" r="4" fill="white"/>
+  
+  <!-- Right leaf -->
+  <ellipse cx="151" cy="115" rx="20" ry="35" fill="#7ec850" transform="rotate(35 151 115)"/>
+  <path d="M 161 100 Q 151 105 141 125" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="156" cy="110" r="4" fill="white"/>
+  <circle cx="146" cy="120" r="4" fill="white"/>
+  
+  <!-- Left arc -->
+  <path d="M 85 90 Q 75 128 85 165" fill="none" stroke="#7ec850" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Right arc -->
+  <path d="M 171 90 Q 181 128 171 165" fill="none" stroke="#7ec850" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Top left accent -->
+  <path d="M 95 65 Q 100 75 110 80" fill="none" stroke="#a8d96f" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Top right accent -->
+  <path d="M 161 65 Q 156 75 146 80" fill="none" stroke="#a8d96f" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Bottom left accent -->
+  <path d="M 90 170 Q 95 180 105 185" fill="none" stroke="#7ec850" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Bottom right accent -->
+  <path d="M 166 170 Q 161 180 151 185" fill="none" stroke="#7ec850" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="70" cy="128" r="5" fill="#a8d96f"/>
+  <circle cx="186" cy="128" r="5" fill="#a8d96f"/>
+  
+  <!-- Windows in house -->
+  <rect x="108" y="92" width="8" height="8" fill="#5dc9d9" rx="2"/>
+  <rect x="120" y="92" width="8" height="8" fill="#5dc9d9" rx="2"/>
+  <rect x="108" y="104" width="8" height="8" fill="#5dc9d9" rx="2"/>
+  <rect x="120" y="104" width="8" height="8" fill="#5dc9d9" rx="2"/>
+  
+  <!-- Small decorative dots -->
+  <circle cx="195" cy="155" r="4" fill="#5dc9d9"/>
+  <circle cx="210" cy="170" r="3" fill="#a8d96f"/>
+</svg>

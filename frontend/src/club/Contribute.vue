@@ -1,179 +1,326 @@
 <template>
-  <section id="contribute" class="section bg-dark">
-    <div class="container">
-      <p class="eyebrow">JOIN ECO FAMILY</p>
-      <h2>Co-create the EcostaStay Experience</h2>
-      <p>Share skills, host retreats, or sponsor regenerative projects. Every role matters.</p>
-      <div class="cta-buttons">
-        <button class="glow-btn" @click="showForm = true">Get Involved</button>
-        <a class="event-btn" href="https://wa.me/250784095661" target="_blank" rel="noopener">Talk to Us</a>
-      </div>
+  <section id="contribute" class="section">
+    <div class="header">
+      <div class="heart-icon">❤️</div>
+      <h2>Make a Contribution</h2>
+      <p>Your kindness can change lives. Join us in upcoming sessions.</p>
     </div>
 
-    <div v-if="showForm" class="join-modal" @click.self="closeForm">
-      <div class="join-card glass">
-        <button class="close-btn" @click="closeForm">×</button>
-        <h3>EcostaStay Club Intake</h3>
-        <p>Tell us how you’d like to collaborate and we’ll respond within 24h.</p>
-        <form @submit.prevent="submitForm">
-          <div class="form-grid">
-            <label>
-              Full Name
-              <input v-model="form.name" type="text" placeholder="Eg. Aline Mukasine" required />
-            </label>
-            <label>
-              Email
-              <input v-model="form.email" type="email" placeholder="you@example.com" required />
-            </label>
-            <label>
-              Phone / WhatsApp
-              <input v-model="form.phone" type="tel" placeholder="+250 7.." required />
-            </label>
-            <label>
-              City / Region
-              <input v-model="form.location" type="text" placeholder="Kigali, Musanze..." />
-            </label>
-            <label>
-              How do you want to contribute?
-              <select v-model="form.track" required>
-                <option disabled value="">Select option</option>
-                <option>Host an Eco-Stay</option>
-                <option>Volunteer Skills / Mentorship</option>
-                <option>Media & Storytelling</option>
-                <option>Sponsor / Fund</option>
-                <option>Attend Events & Retreats</option>
-              </select>
-            </label>
-            <label>
-              Availability
-              <select v-model="form.availability">
-                <option>Weekdays</option>
-                <option>Weekends</option>
-                <option>Remote Only</option>
-                <option>Flexible</option>
-              </select>
-            </label>
+    <div class="content-grid">
+      <div class="contribution-image">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400" alt="Community contribution" />
+        <h3>Standing With a Child-Mother in Need</h3>
+      </div>
+
+      <div class="contribution-card">
+        <div class="card-header">
+          <p class="event-date">📅 Sunday, November 30, 2025</p>
+          <p class="event-location">📍 GITEGA SECTOR</p>
+          <p class="contributors">👥 1 contributor</p>
+        </div>
+
+        <div class="mobile-money-section">
+          <p class="label">📱 Mobile Number:</p>
+          <div class="code-input-group">
+            <input type="text" value="0787427123" readonly />
+            <button class="copy-btn" @click="copyCode" :class="{ copied: codeCopied }">
+              {{ codeCopied ? '✓' : '📋' }}
+            </button>
           </div>
-          <label class="full">
-            Tell us more
-            <textarea v-model="form.message" rows="4" placeholder="Share projects, skills, dates…" />
-          </label>
-          <label class="consent">
-            <input type="checkbox" v-model="form.agree" required />
-            I agree to receive EcostaStay updates about programs and impact.
-          </label>
-          <button class="glow-btn full" type="submit">Submit & Join Waitlist</button>
-          <p v-if="sent" class="success-msg">Thanks! Our concierge will reach out shortly.</p>
-        </form>
+          <p class="ussd-code">USSD Code: <strong>*182*1*1*0787427123#</strong></p>
+        </div>
+
+        <div class="recent-contributors">
+          <h4>Recent Contributors:</h4>
+          <div class="contributor-item">
+            <span class="badge">💰</span>
+            <span class="name">Irene IRUMVA</span>
+            <span class="type">Money Donation</span>
+          </div>
+        </div>
+
+        <a href="https://wa.me/250784095661?text=I%20want%20to%20contribute%20to%20the%20EcoStay%20Club" target="_blank" class="contribute-btn">
+          ❤️ Contribute Now
+        </a>
+
+        <p class="whatsapp-note">💬 Send proof via WhatsApp to <strong>NIYIGABA Heritier</strong></p>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 
-const showForm = ref(false)
-const sent = ref(false)
-const initial = {
-  name: '',
-  email: '',
-  phone: '',
-  location: '',
-  track: '',
-  availability: 'Flexible',
-  message: '',
-  agree: false
-}
-const form = reactive({ ...initial })
+const codeCopied = ref(false)
 
-const closeForm = () => {
-  showForm.value = false
-}
-
-const submitForm = () => {
-  // Hook up to backend/email later; for now just show confirmation
-  sent.value = true
+const copyCode = () => {
+  const number = '0787427123'
+  navigator.clipboard.writeText(number)
+  codeCopied.value = true
   setTimeout(() => {
-    Object.assign(form, initial)
-    sent.value = false
-    showForm.value = false
-  }, 1800)
+    codeCopied.value = false
+  }, 2000)
 }
 </script>
 
 <style scoped>
-.section{ padding:4rem 5%; text-align:center }
-.container{ max-width:900px; margin:0 auto }
-.cta-buttons{ display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem }
-.event-btn{ background:transparent; border:2px solid #00ff9d; color:#00ff9d; padding:0.8rem 1.6rem; border-radius:40px; font-weight:700; text-decoration:none }
-.eyebrow{ letter-spacing:0.4rem; font-weight:700; color:#00ff9d; margin-bottom:0.6rem }
-
-.join-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.75);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:1rem;
-  z-index:9999;
+.section {
+  padding: 4rem 5%;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  text-align: center;
 }
 
-.join-card{
-  max-width:800px;
-  width:100%;
-  padding:2rem;
-  position:relative;
+.header {
+  margin-bottom: 3rem;
 }
 
-.close-btn{
-  position:absolute;
-  top:1rem;
-  right:1rem;
-  background:transparent;
-  border:none;
-  font-size:1.5rem;
-  color:#fff;
-  cursor:pointer;
+.heart-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
 }
 
-form{
-  margin-top:1.5rem;
-  text-align:left;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:1rem;
+h2 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.8rem;
 }
 
-label{
-  display:flex;
-  flex-direction:column;
-  font-size:0.95rem;
-  gap:0.4rem;
-  color:#bcbcbc;
+.header > p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-input, select, textarea{
-  border:none;
-  border-radius:14px;
-  padding:0.9rem 1rem;
-  background:rgba(255,255,255,0.06);
-  color:#fff;
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
 }
 
-textarea{ resize:vertical }
+.contribution-image {
+  text-align: left;
+}
 
-.full{ grid-column:1 / -1 }
-.consent{ flex-direction:row; align-items:center; gap:0.6rem; margin:1rem 0 }
-.consent input{ width:auto }
-.success-msg{ color:#00ff9d; margin-top:1rem; text-align:center }
-.glow-btn.full{ width:100%; margin-top:1rem }
+.contribution-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
 
-@media (max-width:600px){
-  .join-card{ padding:1.5rem }
+.contribution-image img:hover {
+  transform: scale(1.02);
+}
+
+.contribution-image h3 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.contribution-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.card-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.card-header p {
+  margin: 0.5rem 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.mobile-money-section {
+  margin: 1.5rem 0;
+  background: rgba(0, 255, 157, 0.08);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid #00ff9d;
+}
+
+.label {
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.code-input-group {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.code-input-group input {
+  flex: 1;
+  border: 2px solid #00ff9d;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  font-family: monospace;
+  font-size: 1rem;
+  color: #00ff9d;
+  background: white;
+  font-weight: 700;
+}
+
+.copy-btn {
+  background: #00ff9d;
+  border: none;
+  border-radius: 8px;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-btn:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+  transform: scale(1.05);
+}
+
+.copy-btn.copied {
+  background: #00cc7a;
+}
+
+.ussd-code {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(0, 255, 157, 0.05);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  border-left: 3px solid #00ff9d;
+}
+
+.ussd-code strong {
+  color: #00ff9d;
+  font-family: monospace;
+}
+
+.recent-contributors {
+  margin: 2rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.recent-contributors h4 {
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+  font-size: 0.95rem;
+}
+
+.contributor-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.badge {
+  font-size: 1.2rem;
+}
+
+.name {
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.type {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.contribute-btn {
+  display: block;
+  background: linear-gradient(135deg, #FFD700 0%, #00a8ff 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 2rem 0;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+}
+
+.contribute-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+}
+
+.whatsapp-note {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 1rem 0 0 0;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .heart-icon {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 2.5rem 3%;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .heart-icon {
+    font-size: 2.5rem;
+  }
+
+  .contribution-card {
+    padding: 1.5rem;
+  }
+
+  .code-input-group {
+    flex-direction: column;
+  }
+
+  .copy-btn {
+    width: 100%;
+  }
 }
 </style>
